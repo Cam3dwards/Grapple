@@ -1,0 +1,37 @@
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# UnrealEngine generated files
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+LogFiles/
+
+# Doxygen generated documentation
+Documentation/
+
+# Visual Studio files
+.vs/
+.vs_staging/
+*.VC.db
+*.VC.opendb
+*.VC.VC.opendb
+*.sln.docstates
+*.suo
+
+# Visual Studio Code files
+.vscode/
+
+# Rider files
+.idea/
+
+# Xcode files
+*.xcodeproj/
+
+# Log Files
+*.log
