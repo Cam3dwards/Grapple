@@ -1,0 +1,21 @@
+{
+	"name": "BP_Rope",
+	"nodes": [
+		{
+			"title": "Event BeginPlay",
+			"children": []
+		},
+		{
+			"title": "Event ActorBeginOverlap",
+			"children": []
+		},
+		{
+			"title": "Event Tick",
+			"children": []
+		},
+		{
+			"title": "MC_AttachEndReplicated From Server\nExecutes On All\nCustom Event",
+			"children": []
+		}
+	]
+}

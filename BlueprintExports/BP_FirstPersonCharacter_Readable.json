@@ -1,0 +1,932 @@
+{
+	"name": "BP_FirstPersonCharacter",
+	"nodes": [
+		{
+			"title": "Event Receive Controller Changed",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Branch  : Condition is Is Locally Controlled\nTarget is Pawn",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Cast To PlayerController",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Branch  : Condition is Is Valid",
+									"children": [
+										{
+											"pin": "then",
+											"title": "Add Mapping Context\nTarget is Enhanced Input Subsystem Interface  : self is Enhanced Input Local Player Subsystem",
+											"children": []
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "StartGrappleTimer\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Server Start Grapple Timer\nTarget is BP First Person Character\nReplicated To Server (if owning client)",
+					"children": []
+				}
+			]
+		},
+		{
+			"title": "StopGrappleTimer\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Server Stop Grapple Timer\nTarget is BP First Person Character\nReplicated To Server (if owning client)",
+					"children": []
+				}
+			]
+		},
+		{
+			"title": "RetractHook\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Server Retract Hook\nTarget is BP First Person Character\nReplicated To Server (if owning client)",
+					"children": []
+				}
+			]
+		},
+		{
+			"title": "Event Tick",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Branch  : Condition is Is Locally Controlled\nTarget is Pawn",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Set CurrentSpeedAlpha  : CurrentSpeedAlpha is FInterp To",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Timeline  : NewTime is FInterp To",
+									"children": [
+										{
+											"pin": "Update",
+											"title": "Set Field Of View\nTarget is Camera Component  : self is Get FirstPersonCamera, InFieldOfView is Map Range Clamped",
+											"children": [
+												{
+													"pin": "then",
+													"title": "Set Scalar Parameter Value\nTarget is Material Instance Dynamic  : self is Get SpeedLinesMaterialRef",
+													"children": [
+														{
+															"pin": "then",
+															"title": "Set Volume Multiplier\nTarget is Audio Component  : self is Get WooshingSound",
+															"children": []
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "PowerDrain\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "ROS Power Drain\nTarget is BP First Person Character\nRELIABLE Replicated To Server (if owning client)  : CurrentPower is Get CurrentPower",
+					"children": []
+				}
+			]
+		},
+		{
+			"title": "Event BeginPlay",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Set Timer by Event",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Set Timer by Event",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Set Timer by Event",
+									"children": [
+										{
+											"pin": "then",
+											"title": "Set Timer by Event",
+											"children": [
+												{
+													"pin": "then",
+													"title": "Set Timer by Event  : Time is Random Float in Range",
+													"children": [
+														{
+															"pin": "then",
+															"title": "Branch  : Condition is Is Locally Controlled\nTarget is Pawn",
+															"children": [
+																{
+																	"pin": "then",
+																	"title": "Create Dynamic Material Instance",
+																	"children": [
+																		{
+																			"pin": "then",
+																			"title": "Set SpeedLinesMaterialRef",
+																			"children": [
+																				{
+																					"pin": "then",
+																					"title": "Add or Update Blendable\nTarget is Camera Component  : self is Get FirstPersonCamera",
+																					"children": [
+																						{
+																							"pin": "then",
+																							"title": "Create WBP Power Bar Widget",
+																							"children": [
+																								{
+																									"pin": "then",
+																									"title": "Add to Viewport\nTarget is User Widget",
+																									"children": [
+																										{
+																											"pin": "then",
+																											"title": "Create WBP Health Bar Widget",
+																											"children": [
+																												{
+																													"pin": "then",
+																													"title": "Add to Viewport\nTarget is User Widget",
+																													"children": [
+																														{
+																															"pin": "then",
+																															"title": "Set StartTime  : StartTime is Get Game Time in Seconds",
+																															"children": [
+																																{
+																																	"pin": "then",
+																																	"title": "Set StartingZLocation  : StartingZLocation is Get Actor Location\nTarget is Actor",
+																																	"children": [
+																																		{
+																																			"pin": "then",
+																																			"title": "Create WBP HUD Widget",
+																																			"children": [
+																																				{
+																																					"pin": "then",
+																																					"title": "Add to Viewport\nTarget is User Widget",
+																																					"children": [
+																																						{
+																																							"pin": "then",
+																																							"title": "Play\nTarget is Audio Component  : self is Get WooshingSound",
+																																							"children": []
+																																						}
+																																					]
+																																				}
+																																			]
+																																		}
+																																	]
+																																}
+																															]
+																														}
+																													]
+																												}
+																											]
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "TakeDamage\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Sequence",
+					"children": [
+						{
+							"pin": "then_0",
+							"title": "Set with Notify CurrentHealth  : CurrentHealth is Clamp (Float)",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Branch  : Condition is float <= float",
+									"children": [
+										{
+											"pin": "then",
+											"title": "Print Text",
+											"children": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"pin": "then_1",
+							"title": "Set HasTakenDamageRecently",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Delay",
+									"children": [
+										{
+											"pin": "then",
+											"title": "Set HasTakenDamageRecently",
+											"children": []
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "HealthRegen\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Branch  : Condition is float >= float",
+					"children": [
+						{
+							"pin": "else",
+							"title": "Branch  : Condition is Get HasTakenDamageRecently",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Delay",
+									"children": [
+										{
+											"pin": "then",
+											"title": "Set with Notify CurrentHealth  : CurrentHealth is Clamp (Float)",
+											"children": []
+										}
+									]
+								},
+								{
+									"pin": "else"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Event On Landed",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Branch  : Condition is float > float",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Take Damage\nTarget is BP First Person Character  : DamageAmount is float * float",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Multi Sphere Trace By Channel  : Start is vector - vector, End is vector + vector",
+									"children": [
+										{
+											"pin": "then",
+											"title": "Branch",
+											"children": [
+												{
+													"pin": "then",
+													"title": "Switch on EPhysicalSurface  : Selection is Get Surface Type",
+													"children": [
+														{
+															"pin": "SurfaceType1",
+															"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Map Range Clamped",
+															"children": []
+														},
+														{
+															"pin": "SurfaceType2",
+															"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Map Range Clamped",
+															"children": []
+														},
+														{
+															"pin": "SurfaceType3",
+															"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Map Range Clamped",
+															"children": []
+														},
+														{
+															"pin": "SurfaceType4",
+															"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Map Range Clamped",
+															"children": []
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"pin": "else"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "UpdateScore\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Set Score  : Score is Clamp (Float)",
+					"children": []
+				}
+			]
+		},
+		{
+			"title": "UpdatePower\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "ROS Update Power\nTarget is BP First Person Character\nRELIABLE Replicated To Server (if owning client)",
+					"children": []
+				}
+			]
+		},
+		{
+			"title": "Footstep Sounds\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Branch  : Condition is OR Boolean",
+					"children": [
+						{
+							"pin": "else",
+							"title": "Line Trace By Channel  : Start is Get Actor Location\nTarget is Actor, End is vector + vector",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Branch",
+									"children": [
+										{
+											"pin": "then",
+											"title": "Switch on EPhysicalSurface  : Selection is Get Surface Type",
+											"children": [
+												{
+													"pin": "SurfaceType1",
+													"title": "Branch  : Condition is float > float",
+													"children": [
+														{
+															"pin": "then",
+															"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Random Float in Range",
+															"children": []
+														},
+														{
+															"pin": "else",
+															"title": "Branch  : Condition is float > float",
+															"children": [
+																{
+																	"pin": "then",
+																	"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Random Float in Range",
+																	"children": []
+																},
+																{
+																	"pin": "else",
+																	"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Random Float in Range",
+																	"children": []
+																}
+															]
+														}
+													]
+												},
+												{
+													"pin": "SurfaceType2",
+													"title": "Branch  : Condition is float > float",
+													"children": [
+														{
+															"pin": "then",
+															"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Random Float in Range",
+															"children": []
+														},
+														{
+															"pin": "else",
+															"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Random Float in Range",
+															"children": []
+														}
+													]
+												},
+												{
+													"pin": "SurfaceType3",
+													"title": "Branch  : Condition is float > float",
+													"children": [
+														{
+															"pin": "then",
+															"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Random Float in Range",
+															"children": []
+														},
+														{
+															"pin": "else",
+															"title": "Branch  : Condition is float > float",
+															"children": [
+																{
+																	"pin": "then",
+																	"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Random Float in Range",
+																	"children": []
+																},
+																{
+																	"pin": "else",
+																	"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Random Float in Range",
+																	"children": []
+																}
+															]
+														}
+													]
+												},
+												{
+													"pin": "SurfaceType4",
+													"title": "Branch  : Condition is float > float",
+													"children": [
+														{
+															"pin": "then",
+															"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Random Float in Range",
+															"children": []
+														},
+														{
+															"pin": "else",
+															"title": "Branch  : Condition is float > float",
+															"children": [
+																{
+																	"pin": "then",
+																	"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Random Float in Range",
+																	"children": []
+																},
+																{
+																	"pin": "else",
+																	"title": "Play Sound at Location  : Location is Get Actor Location\nTarget is Actor, VolumeMultiplier is Random Float in Range",
+																	"children": []
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "ROS_UpdatePowerRELIABLE Replicated From Client\nExecutes On Server\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Branch  : Condition is AND Boolean",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Set with Notify CurrentPower  : CurrentPower is float + float",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Branch  : Condition is float > float",
+									"children": [
+										{
+											"pin": "then",
+											"title": "Set with Notify CurrentPower  : CurrentPower is Get MaxPower",
+											"children": []
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "ROS_PowerDrainRELIABLE Replicated From Client\nExecutes On Server\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Branch  : Condition is float <= float",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Set with Notify CurrentPower",
+							"children": []
+						},
+						{
+							"pin": "else",
+							"title": "Branch  : Condition is Get Hanging?",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Sequence",
+									"children": [
+										{
+											"pin": "then_0",
+											"title": "Set with Notify CurrentPower  : CurrentPower is float - float",
+											"children": []
+										},
+										{
+											"pin": "then_1",
+											"title": "Branch  : Condition is Get IsClimbingUp",
+											"children": [
+												{
+													"pin": "then",
+													"title": "Set with Notify CurrentPower  : CurrentPower is float - float",
+													"children": []
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Server_SetPlayerStateRefReplicated From Client\nExecutes On Server\nCustom Event",
+			"children": []
+		},
+		{
+			"title": "Server_StartGrappleTimerReplicated From Client\nExecutes On Server\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Sequence",
+					"children": [
+						{
+							"pin": "then_0",
+							"title": "GrappleTimer",
+							"children": [
+								{
+									"pin": "Update",
+									"title": "Switch on Grapple_States  : Selection is Get grapple states",
+									"children": [
+										{
+											"pin": "NewEnumerator1",
+											"title": "Branch  : Condition is float > float",
+											"children": [
+												{
+													"pin": "then",
+													"title": "Set with Notify GrappleTransform  : GrappleTransform is Get Actor Transform\nTarget is Actor",
+													"children": [
+														{
+															"pin": "then",
+															"title": "Branch  : Condition is Is Valid",
+															"children": [
+																{
+																	"pin": "then",
+																	"title": "Destroy Actor\nTarget is Actor  : self is Get GrappleRope",
+																	"children": [
+																		{
+																			"pin": "then",
+																			"title": "Branch  : Condition is Is Valid",
+																			"children": [
+																				{
+																					"pin": "then",
+																					"title": "Destroy Actor\nTarget is Actor  : self is Get GrappleHook",
+																					"children": [
+																						{
+																							"pin": "then",
+																							"title": "SpawnActor BP Grapple  : SpawnTransform_Location is Get, SpawnTransform_Rotation is Get, Velocity is vector * vector",
+																							"children": [
+																								{
+																									"pin": "then",
+																									"title": "Set GrappleHook",
+																									"children": [
+																										{
+																											"pin": "then",
+																											"title": "Set Collision Enabled\nTarget is Primitive Component  : self is Get Grapple",
+																											"children": [
+																												{
+																													"pin": "then",
+																													"title": "SpawnActor BP Rope  : SpawnTransform_Location is Get World Location\nTarget is Scene Component, SpawnTransform_Rotation is Make Rot from X",
+																													"children": [
+																														{
+																															"pin": "then",
+																															"title": "Set GrappleRope",
+																															"children": [
+																																{
+																																	"pin": "then",
+																																	"title": "Set GrappleHook  : GrappleHook is Get GrappleHook",
+																																	"children": [
+																																		{
+																																			"pin": "then",
+																																			"title": "Set with Notify HookActor  : HookActor is Get GrappleHook",
+																																			"children": [
+																																				{
+																																					"pin": "then",
+																																					"title": "Attach Actor To Actor\nTarget is Actor",
+																																					"children": [
+																																						{
+																																							"pin": "then",
+																																							"title": "Set Attach End To\nTarget is Cable Component  : self is Get CableComponent, Actor is Get HookActor",
+																																							"children": [
+																																								{
+																																									"pin": "then",
+																																									"title": "MC Attach End\nTarget is BP Rope\nReplicated To All (if server)  : self is Get GrappleRope",
+																																									"children": [
+																																										{
+																																											"pin": "then",
+																																											"title": "Stop Grapple Timer\nTarget is BP First Person Character",
+																																											"children": [
+																																												{
+																																													"pin": "then",
+																																													"title": "Set Hanging?",
+																																													"children": [
+																																														{
+																																															"pin": "then",
+																																															"title": "Delay",
+																																															"children": [
+																																																{
+																																																	"pin": "then",
+																																																	"title": "Destroy Actor\nTarget is Actor  : self is Get GrappleHook",
+																																																	"children": [
+																																																		{
+																																																			"pin": "then",
+																																																			"title": "Set grapple states",
+																																																			"children": []
+																																																		}
+																																																	]
+																																																}
+																																															]
+																																														}
+																																													]
+																																												}
+																																											]
+																																										}
+																																									]
+																																								}
+																																							]
+																																						}
+																																					]
+																																				}
+																																			]
+																																		}
+																																	]
+																																}
+																															]
+																														}
+																													]
+																												}
+																											]
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	"pin": "else"
+																}
+															]
+														}
+													]
+												}
+											]
+										},
+										{
+											"pin": "NewEnumerator2",
+											"title": "Branch  : Condition is Is Valid",
+											"children": [
+												{
+													"pin": "then",
+													"title": "Branch  : Condition is float > float",
+													"children": [
+														{
+															"pin": "then",
+															"title": "Set Hanging?",
+															"children": []
+														},
+														{
+															"pin": "else",
+															"title": "Set Hanging?",
+															"children": [
+																{
+																	"pin": "then",
+																	"title": "Add Force\nTarget is Character Movement Component  : self is Get CharacterMovement, Force is vector + vector",
+																	"children": []
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"pin": "then_1",
+							"title": "Delay",
+							"children": [
+								{
+									"pin": "then",
+									"title": "RopeLengthTimer",
+									"children": [
+										{
+											"pin": "Update",
+											"title": "Set with Notify CableLength  : CableLength is Clamp (Float), self is Get GrappleRope",
+											"children": []
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Server_StopGrappleTimerReplicated From Client\nExecutes On Server\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Sequence",
+					"children": [
+						{
+							"pin": "then_0"
+						},
+						{
+							"pin": "then_1"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Server_RetractHookReplicated From Client\nExecutes On Server\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Set IsClimbingDown",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Set IsClimbingUp",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Branch  : Condition is Is Valid",
+									"children": [
+										{
+											"pin": "then"
+										},
+										{
+											"pin": "else"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Server_LeftMousePressed\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Branch  : Condition is Equal (Enum)",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Branch  : Condition is float >= float",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Set grapple states",
+									"children": [
+										{
+											"pin": "then",
+											"title": "Set with Notify CurrentPower  : CurrentPower is float - float",
+											"children": [
+												{
+													"pin": "then",
+													"title": "Sphere Trace By Channel  : Start is Get World Location\nTarget is Scene Component, End is vector + vector",
+													"children": [
+														{
+															"pin": "then",
+															"title": "Set TargetLocation  : TargetLocation is Select Vector",
+															"children": [
+																{
+																	"pin": "then",
+																	"title": "Set with Notify ThrowDirection  : ThrowDirection is Normalize",
+																	"children": [
+																		{
+																			"pin": "then",
+																			"title": "SpawnActor BP Grapple  : SpawnTransform_Location is Get World Location\nTarget is Scene Component, SpawnTransform_Rotation is Get World Rotation\nTarget is Scene Component, Velocity is vector * vector",
+																			"children": [
+																				{
+																					"pin": "then",
+																					"title": "Set GrappleHook",
+																					"children": [
+																						{
+																							"pin": "then",
+																							"title": "Set Collision Enabled\nTarget is Primitive Component  : self is Get Grapple",
+																							"children": [
+																								{
+																									"pin": "then",
+																									"title": "SpawnActor BP Rope  : SpawnTransform_Location is Get World Location\nTarget is Scene Component, SpawnTransform_Rotation is Make Rot from X",
+																									"children": [
+																										{
+																											"pin": "then",
+																											"title": "Set GrappleRope",
+																											"children": [
+																												{
+																													"pin": "then",
+																													"title": "Set with Notify HookActor  : HookActor is Get GrappleHook",
+																													"children": [
+																														{
+																															"pin": "then",
+																															"title": "Attach Actor To Actor\nTarget is Actor  : ParentActor is Self-Reference",
+																															"children": [
+																																{
+																																	"pin": "then",
+																																	"title": "Start Grapple Timer\nTarget is BP First Person Character",
+																																	"children": []
+																																}
+																															]
+																														}
+																													]
+																												}
+																											]
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"pin": "else",
+							"title": "Retract Hook\nTarget is BP First Person Character",
+							"children": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Server_LeftMouseReleased\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Retract Hook\nTarget is BP First Person Character",
+					"children": []
+				}
+			]
+		}
+	]
+}

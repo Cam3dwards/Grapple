@@ -1,0 +1,57 @@
+{
+	"name": "BP_Grapple",
+	"nodes": [
+		{
+			"title": "Event BeginPlay",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Cast To BP_FirstPersonCharacter  : Object is Get Player Pawn",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Set AsBPFirstPersonCharacter",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Set Velocity  : Velocity is Get Velocity, self is Get ProjectileMovement",
+									"children": [
+										{
+											"pin": "then",
+											"title": "Set with Notify StartLocation  : StartLocation is Get Actor Location\nTarget is Actor",
+											"children": []
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Event ActorBeginOverlap",
+			"children": []
+		},
+		{
+			"title": "Event Tick",
+			"children": []
+		},
+		{
+			"title": "On Component Hit (Grapple)",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Set grapple states  : self is Get AsBPFirstPersonCharacter",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Set with Notify HookedLocation  : HookedLocation is Get World Location\nTarget is Scene Component",
+							"children": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
