@@ -10,7 +10,7 @@
 					"children": [
 						{
 							"pin": "then",
-							"title": "Set AsBPFirstPersonCharacter",
+							"title": "Set with Notify AsBPFirstPersonCharacter",
 							"children": [
 								{
 									"pin": "then",
@@ -42,11 +42,11 @@
 			"children": [
 				{
 					"pin": "then",
-					"title": "Set grapple states  : self is Get AsBPFirstPersonCharacter",
+					"title": "Set with Notify HookedLocation  : HookedLocation is Get World Location\nTarget is Scene Component",
 					"children": [
 						{
 							"pin": "then",
-							"title": "Set with Notify HookedLocation  : HookedLocation is Get World Location\nTarget is Scene Component",
+							"title": "Print String  : InString is To String (Vector)",
 							"children": []
 						}
 					]

@@ -34,8 +34,14 @@
 			"children": [
 				{
 					"pin": "then",
-					"title": "Server Start Grapple Timer\nTarget is BP First Person Character\nReplicated To Server (if owning client)",
-					"children": []
+					"title": "Print String",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Server Start Grapple Timer\nTarget is BP First Person Character\nReplicated To Server (if owning client)",
+							"children": []
+						}
+					]
 				}
 			]
 		},
@@ -582,100 +588,111 @@
 			"children": [
 				{
 					"pin": "then",
-					"title": "Sequence",
+					"title": "Switch Has Authority",
 					"children": [
 						{
-							"pin": "then_0",
-							"title": "GrappleTimer",
+							"pin": "Authority",
+							"title": "Print String",
 							"children": [
 								{
-									"pin": "Update",
-									"title": "Switch on Grapple_States  : Selection is Get grapple states",
+									"pin": "then",
+									"title": "Sequence",
 									"children": [
 										{
-											"pin": "NewEnumerator1",
-											"title": "Branch  : Condition is float > float",
+											"pin": "then_0",
+											"title": "GrappleTimer",
 											"children": [
 												{
-													"pin": "then",
-													"title": "Set with Notify GrappleTransform  : GrappleTransform is Get Actor Transform\nTarget is Actor",
+													"pin": "Update",
+													"title": "Switch on Grapple_States  : Selection is Get grapple states",
 													"children": [
 														{
-															"pin": "then",
-															"title": "Branch  : Condition is Is Valid",
+															"pin": "NewEnumerator0",
+															"title": "Print String",
+															"children": []
+														},
+														{
+															"pin": "NewEnumerator1",
+															"title": "Print String",
 															"children": [
 																{
 																	"pin": "then",
-																	"title": "Destroy Actor\nTarget is Actor  : self is Get GrappleRope",
+																	"title": "Branch  : Condition is float > float",
 																	"children": [
 																		{
 																			"pin": "then",
-																			"title": "Branch  : Condition is Is Valid",
+																			"title": "Set with Notify GrappleTransform  : GrappleTransform is Get Actor Transform\nTarget is Actor",
 																			"children": [
 																				{
 																					"pin": "then",
-																					"title": "Destroy Actor\nTarget is Actor  : self is Get GrappleHook",
+																					"title": "Branch  : Condition is Is Valid",
 																					"children": [
 																						{
 																							"pin": "then",
-																							"title": "SpawnActor BP Grapple  : SpawnTransform_Location is Get, SpawnTransform_Rotation is Get, Velocity is vector * vector",
+																							"title": "Destroy Actor\nTarget is Actor  : self is Get GrappleRope",
 																							"children": [
 																								{
 																									"pin": "then",
-																									"title": "Set GrappleHook",
+																									"title": "Branch  : Condition is Is Valid",
 																									"children": [
 																										{
 																											"pin": "then",
-																											"title": "Set Collision Enabled\nTarget is Primitive Component  : self is Get Grapple",
+																											"title": "Destroy Actor\nTarget is Actor  : self is Get GrappleHook",
 																											"children": [
 																												{
 																													"pin": "then",
-																													"title": "SpawnActor BP Rope  : SpawnTransform_Location is Get World Location\nTarget is Scene Component, SpawnTransform_Rotation is Make Rot from X",
+																													"title": "SpawnActor BP Grapple  : SpawnTransform_Location is Get, SpawnTransform_Rotation is Get, Velocity is vector * vector",
 																													"children": [
 																														{
 																															"pin": "then",
-																															"title": "Set GrappleRope",
+																															"title": "Set GrappleHook",
 																															"children": [
 																																{
 																																	"pin": "then",
-																																	"title": "Set GrappleHook  : GrappleHook is Get GrappleHook",
+																																	"title": "Set Collision Enabled\nTarget is Primitive Component  : self is Get Grapple",
 																																	"children": [
 																																		{
 																																			"pin": "then",
-																																			"title": "Set with Notify HookActor  : HookActor is Get GrappleHook",
+																																			"title": "SpawnActor BP Rope  : SpawnTransform_Location is Get World Location\nTarget is Scene Component, SpawnTransform_Rotation is Make Rot from X",
 																																			"children": [
 																																				{
 																																					"pin": "then",
-																																					"title": "Attach Actor To Actor\nTarget is Actor",
+																																					"title": "Set with Notify GrappleRope",
 																																					"children": [
 																																						{
 																																							"pin": "then",
-																																							"title": "Set Attach End To\nTarget is Cable Component  : self is Get CableComponent, Actor is Get HookActor",
+																																							"title": "Set with Notify HookActor  : self is Get GrappleRope",
 																																							"children": [
 																																								{
 																																									"pin": "then",
-																																									"title": "MC Attach End\nTarget is BP Rope\nReplicated To All (if server)  : self is Get GrappleRope",
+																																									"title": "Attach Actor To Actor\nTarget is Actor  : ParentActor is Self-Reference",
 																																									"children": [
 																																										{
 																																											"pin": "then",
-																																											"title": "Stop Grapple Timer\nTarget is BP First Person Character",
+																																											"title": "Set Attach End To\nTarget is Cable Component  : self is Get Cable, Actor is Get GrappleHook",
 																																											"children": [
 																																												{
 																																													"pin": "then",
-																																													"title": "Set Hanging?",
+																																													"title": "Stop Grapple Timer\nTarget is BP First Person Character",
 																																													"children": [
 																																														{
 																																															"pin": "then",
-																																															"title": "Delay",
+																																															"title": "Set Hanging?",
 																																															"children": [
 																																																{
 																																																	"pin": "then",
-																																																	"title": "Destroy Actor\nTarget is Actor  : self is Get GrappleHook",
+																																																	"title": "Delay",
 																																																	"children": [
 																																																		{
 																																																			"pin": "then",
-																																																			"title": "Set grapple states",
-																																																			"children": []
+																																																			"title": "Destroy Actor\nTarget is Actor  : self is Get GrappleHook",
+																																																			"children": [
+																																																				{
+																																																					"pin": "then",
+																																																					"title": "Set grapple states",
+																																																					"children": []
+																																																				}
+																																																			]
 																																																		}
 																																																	]
 																																																}
@@ -700,6 +717,69 @@
 																													]
 																												}
 																											]
+																										},
+																										{
+																											"pin": "else"
+																										}
+																									]
+																								}
+																							]
+																						},
+																						{
+																							"pin": "else"
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			"pin": "else",
+																			"title": "Print String",
+																			"children": []
+																		}
+																	]
+																}
+															]
+														},
+														{
+															"pin": "NewEnumerator2",
+															"title": "Print String",
+															"children": [
+																{
+																	"pin": "then",
+																	"title": "Branch  : Condition is Is Valid",
+																	"children": [
+																		{
+																			"pin": "then",
+																			"title": "Branch  : Condition is float > float",
+																			"children": [
+																				{
+																					"pin": "then",
+																					"title": "Set Hanging?",
+																					"children": [
+																						{
+																							"pin": "then",
+																							"title": "Print String",
+																							"children": []
+																						}
+																					]
+																				},
+																				{
+																					"pin": "else",
+																					"title": "Set Hanging?",
+																					"children": [
+																						{
+																							"pin": "then",
+																							"title": "Print String",
+																							"children": [
+																								{
+																									"pin": "then",
+																									"title": "Add Force\nTarget is Character Movement Component  : self is Get CharacterMovement, Force is vector + vector",
+																									"children": [
+																										{
+																											"pin": "then",
+																											"title": "Print String  : InString is To String (Vector)",
+																											"children": []
 																										}
 																									]
 																								}
@@ -708,11 +788,13 @@
 																					]
 																				}
 																			]
+																		},
+																		{
+																			"pin": "else",
+																			"title": "Print String",
+																			"children": []
 																		}
 																	]
-																},
-																{
-																	"pin": "else"
 																}
 															]
 														}
@@ -721,49 +803,21 @@
 											]
 										},
 										{
-											"pin": "NewEnumerator2",
-											"title": "Branch  : Condition is Is Valid",
+											"pin": "then_1",
+											"title": "Delay",
 											"children": [
 												{
 													"pin": "then",
-													"title": "Branch  : Condition is float > float",
+													"title": "RopeLengthTimer",
 													"children": [
 														{
-															"pin": "then",
-															"title": "Set Hanging?",
+															"pin": "Update",
+															"title": "Set with Notify CableLength  : CableLength is Clamp (Float), self is Get GrappleRope",
 															"children": []
-														},
-														{
-															"pin": "else",
-															"title": "Set Hanging?",
-															"children": [
-																{
-																	"pin": "then",
-																	"title": "Add Force\nTarget is Character Movement Component  : self is Get CharacterMovement, Force is vector + vector",
-																	"children": []
-																}
-															]
 														}
 													]
 												}
 											]
-										}
-									]
-								}
-							]
-						},
-						{
-							"pin": "then_1",
-							"title": "Delay",
-							"children": [
-								{
-									"pin": "then",
-									"title": "RopeLengthTimer",
-									"children": [
-										{
-											"pin": "Update",
-											"title": "Set with Notify CableLength  : CableLength is Clamp (Float), self is Get GrappleRope",
-											"children": []
 										}
 									]
 								}
@@ -795,21 +849,27 @@
 			"children": [
 				{
 					"pin": "then",
-					"title": "Set IsClimbingDown",
+					"title": "Branch  : Condition is OR Boolean",
 					"children": [
 						{
 							"pin": "then",
-							"title": "Set IsClimbingUp",
+							"title": "Set IsClimbingDown",
 							"children": [
 								{
 									"pin": "then",
-									"title": "Branch  : Condition is Is Valid",
+									"title": "Set IsClimbingUp",
 									"children": [
 										{
-											"pin": "then"
-										},
-										{
-											"pin": "else"
+											"pin": "then",
+											"title": "Branch  : Condition is Is Valid",
+											"children": [
+												{
+													"pin": "then"
+												},
+												{
+													"pin": "else"
+												}
+											]
 										}
 									]
 								}
@@ -820,7 +880,7 @@
 			]
 		},
 		{
-			"title": "Server_LeftMousePressed\nCustom Event",
+			"title": "Server_LeftMousePressedReplicated From Client\nExecutes On Server\nCustom Event",
 			"children": [
 				{
 					"pin": "then",
@@ -852,7 +912,7 @@
 																	"children": [
 																		{
 																			"pin": "then",
-																			"title": "SpawnActor BP Grapple  : SpawnTransform_Location is Get World Location\nTarget is Scene Component, SpawnTransform_Rotation is Get World Rotation\nTarget is Scene Component, Velocity is vector * vector",
+																			"title": "SpawnActor BP Grapple",
 																			"children": [
 																				{
 																					"pin": "then",
@@ -868,11 +928,11 @@
 																									"children": [
 																										{
 																											"pin": "then",
-																											"title": "Set GrappleRope",
+																											"title": "Set with Notify GrappleRope",
 																											"children": [
 																												{
 																													"pin": "then",
-																													"title": "Set with Notify HookActor  : HookActor is Get GrappleHook",
+																													"title": "Set with Notify HookActor  : self is Get GrappleRope",
 																													"children": [
 																														{
 																															"pin": "then",
@@ -880,8 +940,14 @@
 																															"children": [
 																																{
 																																	"pin": "then",
-																																	"title": "Start Grapple Timer\nTarget is BP First Person Character",
-																																	"children": []
+																																	"title": "Set Attach End To\nTarget is Cable Component  : self is Get Cable, Actor is Get GrappleHook",
+																																	"children": [
+																																		{
+																																			"pin": "then",
+																																			"title": "Server Start Grapple Timer\nTarget is BP First Person Character\nReplicated To Server (if owning client)",
+																																			"children": []
+																																		}
+																																	]
 																																}
 																															]
 																														}
@@ -919,12 +985,145 @@
 			]
 		},
 		{
-			"title": "Server_LeftMouseReleased\nCustom Event",
+			"title": "Server_LeftMouseReleasedReplicated From Client\nExecutes On Server\nCustom Event",
 			"children": [
 				{
 					"pin": "then",
 					"title": "Retract Hook\nTarget is BP First Person Character",
 					"children": []
+				}
+			]
+		},
+		{
+			"title": "Server_ClimbDownOngoingReplicated From Client\nExecutes On Server\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Branch  : Condition is Get Hanging?",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Branch  : Condition is AND Boolean",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Set IsClimbingDown",
+									"children": [
+										{
+											"pin": "then",
+											"title": "Set IsClimbingUp",
+											"children": [
+												{
+													"pin": "then",
+													"title": "Branch  : Condition is float > float",
+													"children": [
+														{
+															"pin": "then",
+															"title": "Set with Notify CableResistance",
+															"children": [
+																{
+																	"pin": "then",
+																	"title": "Add Force\nTarget is Character Movement Component  : self is Get CharacterMovement, Force_X is float * float, Force_Y is float * float, Force_Z is float * float",
+																	"children": []
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"pin": "else",
+							"title": "Branch  : Condition is AND Boolean",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Set IsClimbingDown",
+									"children": [
+										{
+											"pin": "then",
+											"title": "Set IsClimbingUp",
+											"children": [
+												{
+													"pin": "then",
+													"title": "Branch  : Condition is Is Valid",
+													"children": [
+														{
+															"pin": "then",
+															"title": "Branch  : Condition is float > float",
+															"children": [
+																{
+																	"pin": "then",
+																	"title": "Set with Notify CableResistance",
+																	"children": [
+																		{
+																			"pin": "then",
+																			"title": "Add Force\nTarget is Character Movement Component  : self is Get CharacterMovement, Force_X is float * float, Force_Y is float * float, Force_Z is float * float",
+																			"children": []
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Server_ClimbDownCanceledReplicated From Client\nExecutes On Server\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Set IsClimbingUp",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Set with Notify CableResistance",
+							"children": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Server_ClimbDownCompletedReplicated From Client\nExecutes On Server\nCustom Event",
+			"children": [
+				{
+					"pin": "then"
+				}
+			]
+		},
+		{
+			"title": "SetHookedReplicated From Client\nExecutes On Server\nCustom Event",
+			"children": [
+				{
+					"pin": "then",
+					"title": "Branch  : Condition is NOT Boolean",
+					"children": [
+						{
+							"pin": "then",
+							"title": "Set grapple states",
+							"children": [
+								{
+									"pin": "then",
+									"title": "Set Hanging?",
+									"children": []
+								}
+							]
+						}
+					]
 				}
 			]
 		}
